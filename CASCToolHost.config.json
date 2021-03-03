@@ -1,0 +1,6 @@
+{
+  "config": {
+    "cacheDir": "/",
+    "connectionString": "server=mysql;database=casc;uid=root;pwd=wowtools;pooling=true"
+  }
+}
