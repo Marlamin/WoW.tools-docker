@@ -1,0 +1,41 @@
+version: '2.1'
+services:
+  dbc-backend:
+    build: 
+      context: /mnt/d/Martin/Documents/GitHub/DBCDumpHost
+      dockerfile: DBCDumpHost/Dockerfile
+    volumes:
+    - /mnt/d/Martin/Documents/GitHub/DBCDumpHost/DBCDumpHost/caches:/caches
+    - /mnt/d/Martin/Documents/GitHub/WoWDBDefs/definitions:/definitions
+    restart: unless-stopped
+  casc-backend:
+    build: 
+      context: /mnt/d/Martin/Documents/GitHub/CASCToolHost
+      dockerfile: CASCToolHost/Dockerfile
+    restart: unless-stopped
+  mysql:
+    image: mariadb:10.5
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: wowtools
+  site:
+    build: 
+      context: /mnt/d/Martin/Documents/GitHub/wow.tools
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+      - /mnt/d/Martin/Documents/GitHub/wow.tools:/var/www/wow.tools
+  nginx:
+    image: nginx:1.19
+    restart: unless-stopped
+    depends_on:
+      - casc-backend
+      - dbc-backend
+      - site
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /mnt/d/Martin/Documents/GitHub/wow.tools:/var/www/wow.tools
+      - ./wow.tools.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./fastcgi_params.conf:/etc/nginx/fastcgi_params:ro
