@@ -24,6 +24,9 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: wowtools
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
   site:
     build: 
       context: ./www
