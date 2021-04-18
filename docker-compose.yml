@@ -13,6 +13,8 @@ services:
     build: 
       context: ./CASCToolHost
       dockerfile: CASCToolHost/Dockerfile
+    depends_on: 
+      - mysql
     volumes:
     - ./CASCToolHost.config.json:/app/config.json
     - ./tpr:/var/www/wow.tools/tpr
@@ -37,6 +39,7 @@ services:
       - casc-backend
       - dbc-backend
       - site
+      - mysql
     ports:
       - 80:80
       - 443:443
