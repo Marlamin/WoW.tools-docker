@@ -7,6 +7,8 @@
 [submodule "www"]
 	path = www
 	url = https://github.com/Marlamin/wow.tools
+	ignore = dirty
 [submodule "WoWDBDefs"]
 	path = WoWDBDefs
 	url = https://github.com/wowdev/WoWDBDefs.git
+	ignore = dirty
