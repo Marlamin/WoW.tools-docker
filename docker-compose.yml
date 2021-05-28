@@ -19,6 +19,15 @@ services:
     - ./CASCToolHost.config.json:/app/config.json
     - ./tpr:/var/www/wow.tools/tpr
     restart: unless-stopped
+  api-backend:
+    build: 
+      context: ./API
+      dockerfile: Dockerfile
+    depends_on: 
+      - mysql
+    volumes:
+    - ./CASCToolHost.config.json:/app/config.json # Config is currently the same as CASCToolHost's
+    restart: unless-stopped
   mysql:
     image: mariadb:10.5
     restart: unless-stopped
@@ -41,6 +50,7 @@ services:
     depends_on:
       - casc-backend
       - dbc-backend
+      - api-backend
       - site
       - mysql
     ports:
