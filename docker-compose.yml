@@ -42,6 +42,7 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     volumes:
+      - ./tools/buildbackup:/home/wow/buildbackup
       - ./www:/var/www/wow.tools
       - ./tpr:/var/www/wow.tools/tpr
   nginx:
