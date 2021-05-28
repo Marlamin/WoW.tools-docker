@@ -12,3 +12,6 @@
 	path = WoWDBDefs
 	url = https://github.com/wowdev/WoWDBDefs.git
 	ignore = dirty
+[submodule "API"]
+	path = API
+	url = https://github.com/Marlamin/wow.tools.api
