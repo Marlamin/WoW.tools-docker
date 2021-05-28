@@ -636,6 +636,7 @@ CREATE TABLE `wow_versions` (
   `cdnconfig` varchar(32) DEFAULT NULL,
   `patchconfig` varchar(32) DEFAULT NULL,
   `product` varchar(40) DEFAULT NULL,
+  `releasetime` timestamp NULL DEFAULT NULL,
   `complete` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
