@@ -19,6 +19,7 @@ Build data, build processing and getting the various site processes to work toge
 - Compile [BuildBackup](https://github.com/Marlamin/BuildBackup) (rework branch) and put it in the tools/buildbackup folder.
 - Attach a shell to the site image (e.g. `docker exec -it wowtools-docker_site_1 bash` with the correct image name for your site image).
 - `cd /home/wow/buildbackup` to browse to where the BuildBackup tool you copied earlier is mounted.
+- Modify config.json and make cacheDir point to `/var/www/wow.tools/`
 - `dotnet BuildBackup.dll partialdl` to run BuildBackup in partial download mode to skip downloading many GBs of archives (for now)
 - After that is down, `cd /var/www/wow.tools/builds/scripts` and run `php process.php buildconfig && php process.php cdnconfig && php process.php patchconfig` to seed the database with config data.  
 - Builds will show up on the Builds page, albeit without linked cdnconfig. Stop here for now.
